@@ -1,0 +1,29 @@
+{% extends "user.html" %}
+
+
+{% block subtitle %}Results{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{ URL_ROOT }}/static/yaksh/css/question_quiz.css" type="text/css" />
+{% endblock %}
+
+{% block manage %}
+<form action="" method="post" name=frm>
+  {% csrf_token %}
+  <center><table class="span6">
+    <th>Quiz Description
+    <th>Obtained Marks
+    <th>Maximum Marks
+    <th>Percentage
+    {% for paper in papers %}
+        <tr>
+            <td>{{ paper.question_paper.quiz.description }}</td>
+            <td>{{ paper.marks_obtained }}</td>
+            <td>{{ paper.question_paper.total_marks }}</td>
+            <td>{{ paper.percent }}</td>
+        </tr>
+    {% endfor %}
+  </table></center>
+</form>
+{% endblock %}
+
